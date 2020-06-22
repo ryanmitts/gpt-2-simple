@@ -186,7 +186,7 @@ def finetune(sess,
 
     if model_name not in ['117M', '124M']:
         use_memory_saving_gradients = True
-        only_train_transformer_layers = True
+        # only_train_transformer_layers = True
         accumulate_gradients = 1
 
     context = tf.compat.v1.placeholder(tf.int32, [batch_size, None])
