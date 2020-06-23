@@ -40,8 +40,9 @@ def load_dataset(enc, path, combine):
         else:
             # Plain text
             with open(path, 'r', encoding='utf8', errors='ignore') as fp:
-                raw_text = fp.read()
-                tokens += enc.encode(raw_text) + [enc.encoder['<|endoftext|>']]
+                raw_text_lines = fp.readlines()
+                for raw_text in raw_text_lines:
+                    tokens += enc.encode(raw_text) + [enc.encoder['<|endoftext|>']]
 
             if len(tokens) >= combine:
                 token_chunks.append(np.stack(tokens))
