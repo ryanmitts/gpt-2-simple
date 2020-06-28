@@ -14,7 +14,6 @@ import time
 from datetime import datetime
 import csv
 import argparse
-
 # if in Google Colaboratory
 try:
     from google.colab import drive
@@ -24,10 +23,6 @@ except:
 from gpt_2_simple.src import model, sample, encoder, memory_saving_gradients
 from gpt_2_simple.src.load_dataset import load_dataset, Sampler
 from gpt_2_simple.src.accumulate import AccumulatingOptimizer
-
-assert tf.__version__ < '2.0.0', "gpt-2-simple currently does not support " \
-    "TensorFlow 2.0. You'll need to use a virtualenv/cloud computer which " \
-    "has Tensorflow 1.X on it."
 
 
 def download_file_with_progress(url_base, sub_dir, model_name, file_name):
@@ -186,7 +181,7 @@ def finetune(sess,
 
     if model_name not in ['117M', '124M']:
         use_memory_saving_gradients = True
-        # only_train_transformer_layers = True
+        only_train_transformer_layers = True
         accumulate_gradients = 1
 
     context = tf.compat.v1.placeholder(tf.int32, [batch_size, None])
