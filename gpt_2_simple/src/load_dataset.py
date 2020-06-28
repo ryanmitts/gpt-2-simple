@@ -30,9 +30,7 @@ def load_dataset(enc, path, combine):
                 for item in npz.files:
                     token_chunks.append(npz[item])
         if path.endswith('.npy'):
-            # Pre-encoded
-            with np.load(path, allow_pickle=True) as npy:
-                token_chunks.append(npy)
+            token_chunks.append(np.load(path, allow_pickle=True))
         elif path.endswith('.csv'):
             start_token = "<|startoftext|>"
             end_token = "<|endoftext|>"
